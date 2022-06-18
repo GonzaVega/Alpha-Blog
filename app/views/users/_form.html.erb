@@ -23,14 +23,13 @@
             <%= f.password_field :password, class: "form-control shadow rounded", placeholder: "Choose a password" %>
           </div>
         </div>
-
+        <hr>
         <div class="form-group row justify-content-center">
           <%= f.submit(@user.new_record? ? "Sign up" : "Update account", class: "btn btn-outline-light btn-lg") %>
         </div>
       <% end %>
+        </hr>
+        <%= link_to '[ Cancel and return to articles listing ]', articles_path, class: "text-info" %>
     </div>
-    <div class="mb-3">
-      <%= link_to '[ Cancel and return to articles listing ]', articles_path, class: "text-info" %>
-    </div>
-  </div>
+   </div>
 </div> 
