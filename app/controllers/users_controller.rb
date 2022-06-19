@@ -5,8 +5,7 @@ class UsersController < ApplicationController
     end
     def index
        @users = User.all 
-    
-    end
+        end
     def new
         @user = User.new
     end
@@ -17,11 +16,10 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
         if @user.update(user_params)
             flash[:notice] = "Your account information was successfully update"
-            redirect_to articles_path
+            redirect_to @user
         else
             render 'edit'
         end
-
     end
     def create
         @user = User.new(user_params)
@@ -30,9 +28,7 @@ class UsersController < ApplicationController
            redirect_to articles_path
         else
             render 'new'     
-
         end
-    
     end
     private
     def user_params

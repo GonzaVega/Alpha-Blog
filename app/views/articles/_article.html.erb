@@ -12,7 +12,7 @@
         <tr>
             <td><%= article.title %></td>
             <td><%= article.description %></td>
-            <td> Created by: <%= article.user.username %></td>
+            <td> Created by: <%= link_to article.user.username, user_path(article.user) %></td>
             <td> <%= button_to 'Show', article_path(article), method: :get %></td>
             <td> <%= button_to 'Edit', edit_article_path(article), method: :get %></td>
             <td><%= button_to 'Delete', article_path(article), method: :delete, onclick: "return confirm('Are you sure?')"   %></td>
