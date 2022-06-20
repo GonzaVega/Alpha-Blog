@@ -1,3 +1,11 @@
-<h1>Articles listing page</h1>
+<div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+<h1 style="text-align:">Articles listing page</h1>
 
+<div class="flickr_pagination">
+   <%= will_paginate @articles, :container => false %>
+</div>
 <%= render 'article' %>
+<div class="flickr_pagination mb-4">
+   <%= will_paginate @articles, :container => false %>
+</div>
+</div>
