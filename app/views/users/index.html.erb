@@ -11,13 +11,15 @@
           <div 
           class="card-header font-italic" style="text-decoration: none">
           <h5 class="card-title" >
-          <%= user.username %>
+          <%= link_to user.username, user_path(user), method: :get, class: "nav-link" %>
         </h5>
           </div>
           <div class="card-body">
             <p class="card-text"><%= pluralize(user.articles.count, "article") %></p>
             <%= link_to "View profile", user, class: "btn btn-outline-success" %>
+            <% if logged_in? && user == current_user %>
             <%= link_to "Edit profile", edit_user_path(user), class: "btn btn-outline-info" %>
+            <% end %>
           </div>
           <div class="card-footer text-muted">
             <small>Joined <%= time_ago_in_words(user.created_at) %> ago</small>
