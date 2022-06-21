@@ -17,8 +17,13 @@
           <div class="card-body">
             <p class="card-text"><%= pluralize(user.articles.count, "article") %></p>
             <%= link_to "View profile", user, class: "btn btn-outline-success" %>
-            <% if logged_in? && user == current_user %>
+            <% if logged_in? %>
+            <% if user == current_user %>
             <%= link_to "Edit profile", edit_user_path(user), class: "btn btn-outline-info" %>
+            <% end %>
+            <% if current_user.admin? %>
+            <%= button_to "Delete user", user_path(user), class: "btn btn-outline-danger", method: :delete, onclick: "return confirm('Are you sure? This will delete selected user's account and all related articles')" %>
+            <% end %>
             <% end %>
           </div>
           <div class="card-footer text-muted">
