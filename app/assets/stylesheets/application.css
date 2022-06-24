@@ -13,6 +13,15 @@
  *= require_tree .
  *= require_self
  */
+ @media (min-width: 992px){
+  .navbar li {
+      margin-left : 1em;
+      margin-right : 1em;
+  }
+}
+.badge {border: 1px solid #1368a9;
+background: #77a1cb;
+color: rgb(14, 6, 6); }
  .flickr_pagination {
     text-align: center;
     padding: 0.3em;

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+
   <head>
     <title>AlphaBlog</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -13,7 +13,9 @@
   </head>
 
   <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="row">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" >
+    <div class="container-fluid">
       <a class="navbar-brand" href="#">ALPHA BLOG</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -30,23 +32,15 @@
           <li class="nav-item">
             <%= link_to 'Articles', articles_path, method: :get, class: "nav-link" %>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dropdown
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
+          <li class="nav-item">
+          <%= link_to 'Categories', categories_path, method: :get, class: "nav-link" %>
           </li>
-          
           <% if logged_in? %>
           <li class="nav-item"> 
             <%= "(Admin)" if current_user.admin? %>
             <%= link_to current_user.username, user_path(current_user), class: 'nav-link', method: :get %>
           </li>
+          <hr>
           <li class="nav-item">
             <%= button_to 'Logout', logout_path, class: 'btn btn-danger', method: :delete %>
           </li>
@@ -56,7 +50,7 @@
           </li>
           <li class="nav-item">
           <%= link_to 'Log in', login_path, class: 'btn btn-success' %>
-        </li>
+          </li>
           <% end %>
         </ul>
         </div>
@@ -69,8 +63,10 @@
       </form>
       </div>        
     </nav>
+    </div>
     <%= render 'layouts/messages' %>
       <%= yield %>
-  </body>
-  </div>
+      </body>
+      </div>
+     
 </html>
