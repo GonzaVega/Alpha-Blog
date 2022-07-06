@@ -9,4 +9,7 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
   resources :categories, except: [:destroy]
+  get 'search', to: 'articles#search'
+  get 'search/categories', to: 'categories#search'
+  get 'search/users', to: 'users#search'
 end

@@ -1,0 +1,37 @@
+<div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 text-align:center" >
+<div id="page-content">
+  <h2 class="text-center mt-4">Your search results:</h2>
+  <div class="container">
+<%@results.each do |result| %>
+    <div class="row justify-content-md-center">
+      <div class="col-8 mt-4">
+        <div class="card text-center shadow mb-5 bg-white rounded">
+          <div 
+          class="card-header font-italic" style="text-decoration: none">
+          <h5 class="card-title" >
+          <%= link_to result.username, user_path(result), method: :get, class: "nav-link" %>
+        </h5>
+          </div>
+          <div class="card-body">
+            <p class="card-text"><%= pluralize(result.articles.count, "article") %></p>
+            <%= link_to "View profile", result, class: "btn btn-outline-success" %>
+            <% if logged_in? %>
+            <% if result == current_user %>
+            <%= link_to "Edit profile", edit_user_path(result), class: "btn btn-outline-info" %>
+            <% end %>
+            <% if current_user.admin? %>
+            <%= button_to "Delete user", user_path(result), class: "btn btn-outline-danger", method: :delete, onclick: "return confirm('Are you sure? This will delete selected user's account and all related articles')" %>
+            <% end %>
+            <% end %>
+          </div>
+          <div class="card-footer text-muted">
+            <small>Joined <%= time_ago_in_words(result.created_at) %> ago</small>
+          </div>
+        </div>
+        <%= link_to '[ Return Bloggers listing ]', users_path, class: "text-info" %>
+        </div>
+    </div>
+<% end %>  
+</div>
+</div>  
+</div>  

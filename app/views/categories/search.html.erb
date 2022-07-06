@@ -1,0 +1,24 @@
+<div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2 text-align:center" >
+<div id="page-content">
+  <h2 class="text-center mt-4">Your Search results:</h2>
+  <div class="container">
+<%@results.each do |result| %>
+        <div class="row justify-content-md-center">
+          <div class="col-4 mt-4">
+            <div class="card text-center shadow mb-5 bg-white rounded">
+              <div class="card-body">
+                <h5 class="card-title"><%= link_to result.name, category_path(result), class: "text-success" %></h5>
+                <p class="card-text"><%= pluralize(result.articles.count, "article") %></p>
+              </div>
+              <div class="card-footer text-muted">
+                <small>Created <%= time_ago_in_words(result.created_at) %> ago, 
+                edited <%= time_ago_in_words(result.updated_at) %> ago</small>
+              </div>
+            </div>
+            <%= link_to '[ Return to categories listing ]', categories_path, class: "text-info" %>
+          </div>
+        </div>
+<% end %>  
+</div>
+</div>  
+</div>  

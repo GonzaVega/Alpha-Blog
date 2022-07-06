@@ -5,9 +5,19 @@ class UsersController < ApplicationController
     def show
         @articles = @user.articles.paginate(page: params[:page], per_page: 5) 
     end
-    def index
-       @users = User.paginate(page: params[:page], per_page: 5) 
+    def search
+        if params[:search].blank?
+            flash[:alert] = "Please enter a search first"
+            redirect_to users_path and return
+        else
+            @parameter = params[:search].downcase
+            @results = User.all.where("lower(username) LIKE :search", search: "%#{@parameter}%")
         end
+    end
+    def index
+        @user = User.search(params[:search])
+        @users = User.paginate(page: params[:page], per_page: 5) 
+    end
     def new
         @user = User.new
     end
@@ -15,7 +25,6 @@ class UsersController < ApplicationController
    
     end
     def update
-     
         if @user.update(user_params)
             flash[:notice] = "Your account information was successfully update"
             redirect_to @user

@@ -1,7 +1,16 @@
 class CategoriesController < ApplicationController
-before_action :require_admin, except: [:index, :show]
+before_action :require_admin, except: [:index, :show, :search]
     def new
         @category = Category.new
+    end
+    def search
+        if params[:search].blank?
+            flash[:alert] = "Please enter a search first"
+            redirect_to categories_path and return
+        else
+            @parameter = params[:search].downcase
+            @results = Category.all.where("lower(name) LIKE :search", search: "%#{@parameter}%")
+        end
     end
     def index
         @categories = Category.paginate(page: params[:page], per_page: 5)

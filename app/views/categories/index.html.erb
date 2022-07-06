@@ -3,6 +3,18 @@
 <div class="flickr_pagination">
   <%= will_paginate @categories, :container => false %>
 </div>
+<div class="row justify-content-md-center">
+<div class="col-8 mt-4">
+<%= form_tag search_categories_path, method: :get do %>
+   <div class="input-group">
+     <%=text_field_tag :search, params[:search], placeholder: "Sort category by name", class: "form-control" %>
+     <div class="input-goup-btn">
+       <%=submit_tag "Search", class: "btn btn-info glyphicon glyphicon-search" %>
+     </div>          
+     <% end %>
+   </div>
+   </div>
+   </div>
 <div class="container">
   <% @categories.each do |category| %>
     <div class="row justify-content-md-center">
