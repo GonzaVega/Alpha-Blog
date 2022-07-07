@@ -14,7 +14,6 @@ class ArticlesController < ApplicationController
         end
     end
     def index
-        @articles = Article.where(["title LIKE ?", "%#{params[:search]}%"])
         @articles = Article.paginate(page: params[:page], per_page: 5)
     end
     def new
